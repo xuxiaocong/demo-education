@@ -4,4 +4,15 @@
     <select id="findAll" resultType="User">
         SELECT * FROM user
     </select>
+    <select id="findById" resultType="User">
+        SELECT * FROM user WHERE id = #{id}
+    </select>
+    <select id="findByName" resultType="User">
+        SELECT * FROM user WHERE name = #{name} AND password=#{password}
+    </select>
+    <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user (name,password,gmt_create,gmt_modified)
+        VALUES (#{name},#{password},#{gmt_create},#{gmt_modified})
+    </insert>
+
 </mapper>

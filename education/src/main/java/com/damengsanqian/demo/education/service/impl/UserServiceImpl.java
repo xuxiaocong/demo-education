@@ -17,4 +17,25 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll() {
         return userMapper.findAll();
     }
+
+    @Override
+    public User find(String name, String password) throws Exception {
+        User user = userMapper.findByName(name, password);
+        if (user == null) {
+            throw new Exception("账户名或密码错误");
+        }
+        return user;
+    }
+
+    @Override
+    public User find(Long id) {
+        return userMapper.findById(id);
+    }
+
+    @Override
+    public Long register(String name, String password) {
+        User user = new User(name, password);
+        userMapper.insertUser(user);
+        return user.getId();
+    }
 }

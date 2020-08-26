@@ -1,15 +1,9 @@
-drop table IF EXISTS `user`;
-create table  `user` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `age` int(5) DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) DEFAULT NULL,
+  `password` VARCHAR(255) DEFAULT NULL,
+  `gmt_create` BIGINT DEFAULT NULL,
+  `gmt_modified` BIGINT DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
  
--- ----------------------------
--- Records of tb_user
--- ----------------------------
-insert into `user` VALUES ('1', 'laowang', 18);
-insert into `user` VALUES ('2', 'laoli', 20);
-insert into `user` VALUES ('3', 'laowang2', 38);
-insert into `user` VALUES ('4', 'laoli2', 200);

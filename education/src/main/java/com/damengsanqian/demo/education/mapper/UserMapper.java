@@ -12,4 +12,10 @@ public interface UserMapper {
      * @return 用户列表
      */
     List<User> findAll();
+
+    User findByName(String name,String password);
+
+    User findById(Long id);
+
+    Long insertUser(User user);
 }
