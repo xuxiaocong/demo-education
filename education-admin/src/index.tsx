@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './pages/layouts/App';
 import * as serviceWorker from './serviceWorker';
+import Login from './pages/login/Login';
 
 ReactDOM.render(
-  <App />,
+  <Login />,
   document.getElementById('root')
 );
 
