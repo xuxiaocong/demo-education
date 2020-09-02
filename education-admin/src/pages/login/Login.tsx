@@ -3,11 +3,13 @@ import './Login.css';
 import { Form, Input, Checkbox, Button, Modal } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import AccessStore from '../../store/AccessStore';
+import HttpHelper from '../../helper/http-helper';
 
 const Login: FC = () => {
     const onFinish = (form: any) => {
         AccessStore.setUsername(form.username);
         AccessStore.setPassword(form.remember ? form.password : '');
+        HttpHelper.login(form.username, form.password);
     }
 
     return (
@@ -17,7 +19,6 @@ const Login: FC = () => {
             footer={null}
         >
             <Form
-                name="normal_login"
                 initialValues={{
                     username: AccessStore.getUsername(),
                     password: AccessStore.getPassword(),

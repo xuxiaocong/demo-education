@@ -5,11 +5,27 @@ import com.damengsanqian.demo.education.entity.User;
 import java.util.List;
 
 public interface UserService {
-    List<User> findAll();
+    /**
+     * 创建管理员账户
+     */
+    void createRootAccount();
 
-    User find(String name, String password) throws Exception;
+    /**
+     * 登录
+     * @param name 用户名
+     * @param password 密码
+     * @return 用户
+     * @throws Exception
+     */
+    User login(String name, String password) throws Exception;
 
-    User find(Long id);
 
-    Long register(String name,String password);
+
+//    List<User> findAll();
+//
+//
+//    User find(Long id);
+//
+//    Long register(String name, String password);
+
 }

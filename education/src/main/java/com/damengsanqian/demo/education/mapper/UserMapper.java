@@ -7,15 +7,19 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-    /**
-     * 返回所以用户
-     * @return 用户列表
-     */
-    List<User> findAll();
 
-    User findByName(String name,String password);
+    User findByName(String name);
 
-    User findById(Long id);
+    User findByNameAndPassword(String name, String password);
 
     Long insertUser(User user);
+
+//    /**
+//     * 返回所以用户
+//     *
+//     * @return 用户列表
+//     */
+//    List<User> findAll();
+//
+//    User findById(Long id);
 }

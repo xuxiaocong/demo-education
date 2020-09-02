@@ -12,4 +12,8 @@ public class EducationApplication {
 		SpringApplication.run(EducationApplication.class, args);
 	}
 
+	public static void init(){
+		System.out.println("hehe");
+	}
+
 }

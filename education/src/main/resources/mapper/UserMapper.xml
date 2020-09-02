@@ -8,6 +8,9 @@
         SELECT * FROM user WHERE id = #{id}
     </select>
     <select id="findByName" resultType="User">
+        SELECT * FROM user WHERE name = #{name}
+    </select>
+    <select id="findByNameAndPassword" resultType="User">
         SELECT * FROM user WHERE name = #{name} AND password=#{password}
     </select>
     <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="id">
