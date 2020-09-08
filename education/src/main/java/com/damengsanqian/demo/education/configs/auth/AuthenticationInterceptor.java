@@ -5,9 +5,11 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.damengsanqian.demo.education.configs.exception.BizException;
 import com.damengsanqian.demo.education.entity.User;
 import com.damengsanqian.demo.education.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,7 +40,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         // 默认验证
         String token = request.getHeader("Authorization");
         if (token == null || token.indexOf("Bearer") != 0 || token.length() < 7) {
-            throw new RuntimeException("无token,请重新登录");
+            //Token无效
+            throw new BizException(HttpStatus.UNAUTHORIZED);
         }
         token = token.substring(7);
 
@@ -50,14 +53,16 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         }
         User user = userService.find(userId);
         if (user == null) {
-            throw new RuntimeException("用户不存在，请重新登录");
+            //用户不存在
+            throw new BizException(HttpStatus.UNAUTHORIZED);
         }
         //验证 token
         JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
         try {
             jwtVerifier.verify(token);
         } catch (JWTVerificationException e) {
-            throw new RuntimeException("401");
+            //验证失败
+            throw new BizException(HttpStatus.UNAUTHORIZED);
         }
         return true;
     }
