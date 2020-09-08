@@ -14,12 +14,13 @@ public interface UserMapper {
 
     Long insertUser(User user);
 
+    User findById(Long id);
+
 //    /**
 //     * 返回所以用户
 //     *
 //     * @return 用户列表
 //     */
 //    List<User> findAll();
-//
-//    User findById(Long id);
+
 }

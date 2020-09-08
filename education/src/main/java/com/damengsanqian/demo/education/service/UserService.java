@@ -14,18 +14,17 @@ public interface UserService {
      * 登录
      * @param name 用户名
      * @param password 密码
-     * @return 用户
+     * @return 返回 jwt token
      * @throws Exception
      */
-    User login(String name, String password) throws Exception;
+    String login(String name, String password) throws Exception;
 
-
+    User find(Long id);
 
 //    List<User> findAll();
-//
-//
-//    User find(Long id);
-//
+
+
+
 //    Long register(String name, String password);
 
 }
