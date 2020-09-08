@@ -25,6 +25,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, Object>> bizExceptionHandler(HttpServletRequest req, BizException e) {
         Map<String, Object> map = new HashMap<>();
         map.put("message", e.getMessage());
+        logger.info("已知异常{}:{}", e.getStatus(), e.getMessage());
         return new ResponseEntity<>(map, e.getStatus());
     }
 
@@ -33,6 +34,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, Object>> exceptionHandler(HttpServletRequest req, Exception e) {
         Map<String, Object> map = new HashMap<>();
         map.put("message", e.getMessage());
+        logger.error("未知异常:{}", e);
         return new ResponseEntity<>(map, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
