@@ -1,8 +1,7 @@
 package com.damengsanqian.demo.education.service;
 
 import com.damengsanqian.demo.education.entity.User;
-
-import java.util.List;
+import com.damengsanqian.demo.education.viewmodel.user.VmToken;
 
 public interface UserService {
     /**
@@ -12,17 +11,17 @@ public interface UserService {
 
     /**
      * 登录
-     * @param name 用户名
+     *
+     * @param name     用户名
      * @param password 密码
-     * @return 返回 jwt token
+     * @return 返回 jwt token对象
      * @throws Exception
      */
-    String login(String name, String password) throws Exception;
+    VmToken login(String name, String password) throws Exception;
 
     User find(Long id);
 
 //    List<User> findAll();
-
 
 
 //    Long register(String name, String password);
