@@ -1,4 +1,4 @@
-import request from 'umi-request';
+import { get } from '@/utils/request';
 import store from 'store';
 
 export const getUsername = (): string => {
@@ -18,7 +18,5 @@ export const setPassword = (password: string): void => {
 }
 
 export const login = async (username: string, password: string) => {
-    return request('/api/user/login', {
-        params: { name: username, password }
-    });
+    return get('/api/user/login', { name: username, password });
 }

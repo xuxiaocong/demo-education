@@ -1,14 +1,18 @@
 import React, { FC } from 'react';
-import styles from './index.less';
-import { getUsername, getPassword, setUsername, setPassword, login } from './service';
+import { connect, ConnectProps, LoginState } from 'umi';
 import { Button, Checkbox, Modal, Form, Input } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
-const Login: FC = () => {
+interface PageProps extends ConnectProps {
+    login: LoginState;
+}
+
+const Login: FC<PageProps> = ({ login, dispatch }) => {
     const onFinish = (form: any) => {
-        setUsername(form.username);
-        setPassword(form.remember ? form.password : '');
-        login(form.username, form.password).then((value) => console.log(value));
+        dispatch!({
+            type: 'login/loginRequest',
+            payload: { ...form }
+        })
     }
     return (
         <Modal
@@ -17,11 +21,7 @@ const Login: FC = () => {
             footer={null}
         >
             <Form
-                initialValues={{
-                    username: getUsername(),
-                    password: getPassword(),
-                    remember: true
-                }}
+                initialValues={{ ...login }}
                 onFinish={onFinish}
             >
                 <Form.Item name="username"
@@ -59,4 +59,4 @@ const Login: FC = () => {
 
 }
 
-export default Login;
+export default connect(({ login }: { login: LoginState }) => (({ login })))(Login);
