@@ -5,9 +5,9 @@ import com.damengsanqian.demo.education.entity.User;
 public class VmToken {
     private String token;
 
-    private User user;
+    private VmUser user;
 
-    public VmToken(String token, User user) {
+    public VmToken(String token, VmUser user) {
         this.token = token;
         this.user = user;
     }
@@ -20,11 +20,11 @@ public class VmToken {
         this.token = token;
     }
 
-    public User getUser() {
+    public VmUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(VmUser user) {
         this.user = user;
     }
 

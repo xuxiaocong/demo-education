@@ -5,6 +5,7 @@ import com.damengsanqian.demo.education.configs.auth.PassToken;
 import com.damengsanqian.demo.education.service.UserService;
 import com.damengsanqian.demo.education.viewmodel.user.VmToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @PassToken
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public VmToken login(@RequestParam("name") String name, @RequestParam("password") String password) throws Exception {
         return userService.login(name, password);
     }

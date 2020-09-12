@@ -6,7 +6,7 @@ const UnauthorizedPage: FC = () => (
     <Result
         status="403"
         title="401"
-        subTitle="身份认证失效或权限不足！"
+        subTitle="未登陆或身份信息已过期，请重新登陆！"
         extra={
             <Button type="primary" onClick={() => history.push("/account/login")}>
                 去登录

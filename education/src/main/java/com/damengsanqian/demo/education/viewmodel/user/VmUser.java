@@ -1,8 +1,13 @@
 package com.damengsanqian.demo.education.viewmodel.user;
 
+import com.damengsanqian.demo.education.entity.User;
+
 public class VmUser {
     private String name;
-    private String password;
+
+    public VmUser(User user) {
+        this.name = user.getName();
+    }
 
     public String getName() {
         return name;
@@ -11,13 +16,5 @@ public class VmUser {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    
 }

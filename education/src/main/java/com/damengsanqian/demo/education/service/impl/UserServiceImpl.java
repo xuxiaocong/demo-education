@@ -2,11 +2,14 @@ package com.damengsanqian.demo.education.service.impl;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.damengsanqian.demo.education.configs.exception.BizException;
 import com.damengsanqian.demo.education.entity.User;
 import com.damengsanqian.demo.education.mapper.UserMapper;
 import com.damengsanqian.demo.education.service.UserService;
 import com.damengsanqian.demo.education.viewmodel.user.VmToken;
+import com.damengsanqian.demo.education.viewmodel.user.VmUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -28,7 +31,7 @@ public class UserServiceImpl implements UserService {
     public VmToken login(String name, String password) throws Exception {
         User user = userMapper.findByNameAndPassword(name, password);
         if (user == null) {
-            throw new Exception("账户名或密码错误");
+            throw new BizException(HttpStatus.BAD_REQUEST, "账户名或密码错误");
         }
         Long expiresTime = System.currentTimeMillis() + 6 * 60 * 60 * 1000;//有效期6小时
         String token = JWT.create()
@@ -38,7 +41,7 @@ public class UserServiceImpl implements UserService {
                 .withExpiresAt(new Date(expiresTime))
                 .withIssuedAt(new Date())
                 .sign(Algorithm.HMAC256(user.getPassword()));
-        return new VmToken(token, user);
+        return new VmToken(token, new VmUser(user));
     }
 
     @Override

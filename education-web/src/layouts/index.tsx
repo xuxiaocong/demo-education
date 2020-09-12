@@ -14,13 +14,10 @@ interface PageProps extends ConnectProps {
     layout: LayoutState;
 }
 
-const BasicLayout: FC<PageProps> = ({ layout, dispatch, children, location }) => {
-    const { pathname } = location;
-    if (pathname === '/account/login' || pathname === '/401') {
+const BasicLayout: FC<PageProps> = ({ layout, dispatch, children }) => {
+    if (!layout.showLayout) {
         return <>{children}</>
     }
-
-    //todo:检查是否有token，否则跳转到401
 
     const changCollapsed = (collapsed: boolean) => {
         dispatch!({
@@ -29,8 +26,14 @@ const BasicLayout: FC<PageProps> = ({ layout, dispatch, children, location }) =>
         })
     }
 
-    const logout = () => {
-
+    const userMenuClick = (e: any) => {
+        switch (e.key) {
+            case 'logout':
+                dispatch!({
+                    type: 'layout/logout'
+                });
+                break;
+        }
     }
 
     return (
@@ -57,18 +60,16 @@ const BasicLayout: FC<PageProps> = ({ layout, dispatch, children, location }) =>
                             <Col span={4} className={styles.right}>
                                 <Dropdown
                                     overlay={
-                                        <Menu>
-                                            <Menu.Item onClick={() => logout}>
+                                        <Menu onClick={userMenuClick}>
+                                            <Menu.Item key="logout">
                                                 <LogoutOutlined />
-                                                <span>
-                                                    退出登录
-                                                </span>
+                                                <span>退出登录</span>
                                             </Menu.Item>
                                         </Menu>
                                     }
                                 >
                                     <a onClick={e => e.preventDefault()}>
-                                        <span>Hi, 老王 !</span>
+                                        <span>Hi, {layout.user?.name} !</span>
                                         <DownOutlined className={styles.userDropdown} />
                                     </a>
                                 </Dropdown>
