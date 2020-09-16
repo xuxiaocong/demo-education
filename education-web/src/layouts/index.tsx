@@ -86,7 +86,7 @@ const BasicLayout: FC<PageProps> = ({ layout, dispatch, children }) => {
                     </div>
                 </Layout.Content>
                 <Layout.Footer className={styles.footer}>
-                    ©2020 Create by damengsanqian
+                    ©2020 Create by damengsanqian - {process.env.VERSION}
                 </Layout.Footer>
             </Layout>
         </Layout>

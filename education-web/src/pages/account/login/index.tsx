@@ -16,7 +16,7 @@ const Login: FC<PageProps> = ({ login, dispatch }) => {
     }
     return (
         <Modal
-            title="XX管理系统"
+            title={`XX管理系统-${process.env.VERSION}`}
             visible={true}
             footer={null}
         >

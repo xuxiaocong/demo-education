@@ -19,7 +19,7 @@ export const setPassword = (password: string): void => {
 }
 
 export const login = async (username: string, password: string) => {
-    return get('/api/user/login', { name: username, password });
+    return get('/user/login', { name: username, password });
 }
 
 export const saveUserInfo = (token: string, user: User): void => {

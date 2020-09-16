@@ -13,7 +13,7 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowCredentials(true)
-                .allowedOrigins("http://localhost:8000")
+                .allowedOrigins("http://www.damengsanqian.com:8001")
                 .allowedHeaders("*")
                 .allowedMethods("*")
                 .maxAge(3600);

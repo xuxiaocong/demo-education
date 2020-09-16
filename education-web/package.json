@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "start": "umi dev",
-    "build": "umi build",
+    "build:beta": "cross-env UMI_ENV=beta umi build",
+    "build:prod": "cross-env UMI_ENV=prod umi build",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
@@ -32,6 +33,7 @@
     "yorkie": "^2.0.0"
   },
   "devDependencies": {
-    "@types/store": "^2.0.2"
+    "@types/store": "^2.0.2",
+    "cross-env": "^7.0.2"
   }
 }
