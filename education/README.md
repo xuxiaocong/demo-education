@@ -20,6 +20,19 @@ mvnw clean install
 
 ```shell
 mvnw clean spring-boot:run
+
+# 多环境
+mvnw clean spring-boot:run -P beta
+mvnw clean spring-boot:run -P dev
+```
+
+4. 打包
+```shell
+mvnw clean package
+
+# 多环境
+mvnw clean package -P beta
+mvnw clean package -P dev
 ```
 
 ## 恰饭
